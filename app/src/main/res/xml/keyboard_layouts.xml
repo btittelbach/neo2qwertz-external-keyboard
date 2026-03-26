@@ -3,4 +3,7 @@
      <keyboard-layout android:name="keyboard_layout_neo2"
              android:label="@string/keyboard_layout_neo2_label"
              android:keyboardLayout="@raw/keyboard_layout_neo2" />
+     <keyboard-layout android:name="keyboard_layout_neoqwertz"
+             android:label="@string/keyboard_layout_neoqwertz_label"
+             android:keyboardLayout="@raw/keyboard_layout_neoqwertz" />
 </keyboard-layouts>
