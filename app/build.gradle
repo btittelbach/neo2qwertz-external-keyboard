@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace "de.viatorus.neo2externalkeyboard"  // match the package in AndroidManifest.xm1l
-    compileSdkVersion 30
+    compileSdkVersion 34
 
     defaultConfig {
         applicationId "de.viatorus.neo2externalkeyboard"
-        minSdkVersion 16
-        targetSdkVersion 30
+        minSdkVersion 21
+        targetSdkVersion 34
         versionCode 1
         versionName "1.1.0"
     }
