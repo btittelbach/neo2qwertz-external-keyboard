@@ -3,6 +3,7 @@ plugins {
 }
 
 android {
+    namespace "de.viatorus.neo2externalkeyboard"  // match the package in AndroidManifest.xm1l
     compileSdkVersion 30
 
     defaultConfig {
