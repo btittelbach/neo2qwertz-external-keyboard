@@ -1,14 +1,90 @@
 type OVERLAY
 
 ###
-# NeoQwertz layout:
-# - Layers 1 & 2: Standard German QWERTZ (no remapping)
-# - Layers 3–6:   Neo2 special layers via CapsLock (Mod3) and AltGr (Mod4)
+# Only physical keyboard with german layout is supports.
+# Remap each alphabetic keys to keep ctrl + [alpha] functionality.
+# Remap all others to best fit.
 ###
 
-# Row 1 — no map key remapping (QWERTZ base layer preserved)
+# Remap row 1
+
+map key 41  PLUS # circumflex
+map key 2   1
+map key 3   2
+map key 4   3
+map key 5   4
+map key 6   5
+map key 7   6
+map key 8   7
+map key 9   8
+map key 10  9
+map key 11  0
+map key 12  SHARPS
+map key 13  GRAVE
+
+
+# Remap row 2
+
+map key 16  Q
+map key 17  W
+map key 18  E
+map key 19  R
+map key 20  T
+map key 21  Z
+map key 22  U
+map key 23  I
+map key 24  O
+map key 25  P
+map key 26 LEFT_BRACKET # ü
+map key 27 RIGHT_BRACKET # acute
+
+# Remap row 3
+
+map key 30 A
+map key 31 S
+map key 32 D
+map key 33 F
+map key 34 G
+map key 35 H
+map key 36 J
+map key 37 K
+map key 38 L
+map key 39 SEMICOLON # Ö
+map key 40 APOSTROPHE # Ä
+map key 43 BACKSLASH # MOD3
+
+# Remap row 4
+
+map key 86 SLASH # MOD4
+map key 44 Y
+map key 45 X
+map key 46 C
+map key 47 V
+map key 48 B
+map key 49 N
+map key 50 M
+map key 51 COMMA
+map key 52 PERIOD
+map key 53 MINUS
+
+
+
+# Remap row 4
+
+map key 86 SLASH # MOD4
+
+# Remap row 5
+
+###
+# Define base and shift for each key. All other modifiers are handled by Neo2InputMethodService.
+###
+
+# Define row 1
 
 key PLUS {
+    label:                              '^'
+    base:                               '\u0302' # Combining circumflex
+    shift:                              '\u030C' # Combining caron
     capslock:                           '\u02D9' # ˙
     ralt:                               '\u21BB' # ↻
     shift+capslock:                     '\u02DE' # ˞
@@ -16,6 +92,9 @@ key PLUS {
 }
 
 key 1 {
+    label:                              '1'
+    base:                               '1'
+    shift:                              '\u00B0' # °
     capslock:                           '\u00B9' # ¹
     ralt:                               '\u00AA' # ª
     shift+capslock:                     '\u2081' # ₁
@@ -23,6 +102,9 @@ key 1 {
 }
 
 key 2 {
+    label:                              '2'
+    base:                               '2'
+    shift:                              '\u00A7' # §
     capslock:                           '\u00B2' # ²
     ralt:                               '\u00BA' # º
     shift+capslock:                     '\u2082' # ₂
@@ -30,6 +112,9 @@ key 2 {
 }
 
 key 3 {
+    label:                              '3'
+    base:                               '3'
+    shift:                              '\u2113' # ℓ
     capslock:                           '\u00B3' # ³
     ralt:                               '\u2116' # №
     shift+capslock:                     '\u2083' # ₃
@@ -37,6 +122,9 @@ key 3 {
 }
 
 key 4 {
+    label:                              '4'
+    base:                               '4'
+    shift:                              '\u00BB' # »
     capslock:                           '\u203A' # ›
     ralt:                               none
     shift+capslock:                     '\u2640' # ♀
@@ -44,6 +132,9 @@ key 4 {
 }
 
 key 5 {
+    label:                              '5'
+    base:                               '5'
+    shift:                              '\u00AB' # «
     capslock:                           '\u2039' # ‹
     ralt:                               '\u00B7' # ·
     shift+capslock:                     '\u2642' # ♂
@@ -51,6 +142,9 @@ key 5 {
 }
 
 key 6 {
+    label:                              '6'
+    base:                               '6'
+    shift:                              '$' # $
     capslock:                           '\u00A2' # ¢
     ralt:                               '\u00A3' # £
     shift+capslock:                     '\u26A5' # ⚥
@@ -58,13 +152,19 @@ key 6 {
 }
 
 key 7 {
+    label:                              '7'
+    base:                               '7'
+    shift:                              '\u20AC' # €
     capslock:                           '\u00A5' # ¥
     ralt:                               '\u00A4' # ¤
-    shift+capslock:                     '\u03F0' # ϰ
-    capslock+ralt:                      '\u2192' # →
+    shift+capslock:                     '\u03F0' # →
+    capslock+ralt:                      '\u2192' # ϰ
 }
 
 key 8 {
+    label:                              '8'
+    base:                               '8'
+    shift:                              '\u201E' # „
     capslock:                           '\u201A' # ‚
     ralt:                               '\u21E5' # ⇥
     shift+capslock:                     '\u27E8' # ⟨
@@ -72,203 +172,281 @@ key 8 {
 }
 
 key 9 {
-    capslock:                           '\u2018' # '
+    label:                              '9'
+    base:                               '9'
+    shift:                              '\u201C' # “
+    capslock:                           '\u2018' # ‘
     ralt:                               '/'
     shift+capslock:                     '\u27E9' # ⟩
     capslock+ralt:                      '\u221D' # ∝
 }
 
 key 0 {
-    capslock:                           '\u2019' # '
+    label:                              '0'
+    base:                               '0'
+    shift:                              '\u201D' # ”
+    capslock:                           '\u2019' # ’
     ralt:                               '*'
     shift+capslock:                     '\u2080' # ₀
     capslock+ralt:                      '\u2205' # ∅
 }
 
-key MINUS {
-    capslock:                           '-'
+key SHARPS {
+    label:                              '\u1E9E' # ẞ
+    base:                               '\u00DF' # ß
+    shift:                              '\u1E9E' # ẞ
+    capslock:                           none
     ralt:                               '-'
-    shift+capslock:                     '\u2011' # ‑
-    capslock+ralt:                      '\u254C' # ╌
+    capslock+ralt:                      '\u03C2' # ς
+    shift+capslock:                     '\u2218' # ∘
 }
 
 key GRAVE {
+    label:                              '`'
+    base:                               '\u0300' # Combining grave
+    shift:                              '\u0327' # Combining cedilla
     capslock:                           '\u0308' # Combining diaeresis
     ralt:                               '\u02DA' # Combining ring above
-    shift+capslock:                     '\u1FFE' # ῾
+    shift+capslock:                     '\u1FFE' # ­῾
     capslock+ralt:                      '\u00AF' # ¯
 }
 
-# Row 2 — QWERTZ positions, Neo2 upper layers only
-# Q W E R T Z U I O P [ ]
+# Define row 2
 
-key Q {
-    capslock:                           '\u2026' # …
-    ralt:                               fallback PAGE_UP
-    shift+capslock:                     '\u039E' # Ξ
+key X {
+    label:                              'X'
+    base:                               'x'
+    shift:                              'X'
+    capslock:                           '$'
+    ralt:                               fallback TAB
     capslock+ralt:                      '\u03BE' # ξ
+    shift+capslock:                     '\u039E' # Ξ
+}
+
+key V {
+    label:                              'V'
+    base:                               'v'
+    shift:                              'V'
+    capslock:                           '~'
+    ralt:                               fallback ENTER
+    shift+capslock:                     '\u03C0' # π
+    capslock+ralt:                      '\u03A0' # Π
+}
+
+key L {
+    label:                              'L'
+    base:                               'l'
+    shift:                              'L'
+    capslock:                           '-'
+    ralt:                               '6'
+    shift+capslock:                     '\u03BB' # λ
+    capslock+ralt:                      '\u039B' # Λ
+}
+
+key C {
+    label:                              'C'
+    base:                               'c'
+    shift:                              'C'
+    capslock:                           '|'
+    ralt:                               fallback INSERT
+    shift+capslock:                     '\u03C7' # χ
+    capslock+ralt:                      '\u2102' # ℂ
 }
 
 key W {
+    label:                              'W'
+    base:                               'w'
+    shift:                              'W'
     capslock:                           '_'
     ralt:                               fallback DEL
-    shift+capslock:                     '\u221A' # √
+    shift+capslock:                     '\u03C9' # ω
     capslock+ralt:                      none
 }
 
-key E {
-    capslock:                           '['
-    ralt:                               fallback DPAD_UP
-    shift+capslock:                     '\u039B' # Λ
-    capslock+ralt:                      '\u03BB' # λ
+key K {
+    label:                              'K'
+    base:                               'k'
+    shift:                              'K'
+    capslock:                           ')'
+    ralt:                               '5'
+    shift+capslock:                     '\u03BA' # κ
+    capslock+ralt:                      '\u00D7' # ×
 }
 
-key R {
-    capslock:                           ']'
-    ralt:                               fallback FORWARD_DEL
-    shift+capslock:                     '\u2102' # ℂ
-    capslock+ralt:                      '\u03C7' # χ
-}
-
-key T {
-    capslock:                           '^'
-    ralt:                               fallback PAGE_DOWN
-    shift+capslock:                     '\u03A9' # Ω
-    capslock+ralt:                      '\u03C9' # ω
-}
-
-key Z {
-    capslock:                           '!'
-    ralt:                               '\u00A1' # ¡
-    shift+capslock:                     '\u00D7' # ×
-    capslock+ralt:                      '\u03BA' # κ
-}
-
-key U {
-    capslock:                           '<'
-    ralt:                               '7'
+key H {
+    label:                              'H'
+    base:                               'h'
+    shift:                              'H'
+    capslock:                           '?'
+    ralt:                               '\u00BF' # ¿    capslock+ralt:                      '\u03C8' # ψ
     shift+capslock:                     '\u03A8' # Ψ
-    capslock+ralt:                      '\u03C8' # ψ
 }
 
-key I {
-    capslock:                           '>'
-    ralt:                               '8'
-    shift+capslock:                     '\u0393' # Γ
+key G {
+    label:                              'G'
+    base:                               'g'
+    shift:                              'G'
+    capslock:                           '*'
+    ralt:                               fallback MOVE_END
     capslock+ralt:                      '\u03B3' # γ
+    shift+capslock:                     '\u0393' # Γ
 }
 
-key O {
-    capslock:                           '='
-    ralt:                               '9'
-    shift+capslock:                     '\u03A6' # Φ
+key F {
+    label:                              'F'
+    base:                               'f'
+    shift:                              'F'
+    capslock:                           '}'
+    ralt:                               fallback DPAD_RIGHT
     capslock+ralt:                      '\u03C6' # φ
+    shift+capslock:                     '\u03A6' # Φ
 }
 
-key P {
-    capslock:                           '&'
-    ralt:                               '+'
-    shift+capslock:                     '\u211A' # ℚ
+key Q {
+    label:                              'Q'
+    base:                               'q'
+    shift:                              'Q'
+    capslock:                           '\u2026' # …
+    ralt:                               fallback PAGE_UP
     capslock+ralt:                      '\u03D5' # ϕ
+    shift+capslock:                     '\u211A' # ℚ
 }
 
 key LEFT_BRACKET {
+    label:                              'Ü' #
+    base:                               'ü' #
+    shift:                              'Ü' #
     capslock:                           '\u017F' # ſ
     ralt:                               '\u2212' # −
-    shift+capslock:                     '\u2218' # ∘
     capslock+ralt:                      '\u03C2' # ς
+    shift+capslock:                     '\u222A' # ∪
 }
 
 key RIGHT_BRACKET {
+    label:                              '\u00B4' # ´
+    base:                               '\u0301' # Combining acute
+    shift:                              '\u0303' # Combining tilde
     capslock:                           '\u0337' # Combining solidus
-    ralt:                               '\u030B' # Combining double acute
-    shift+capslock:                     '\u0306' # Combining breve
+    ralt:                               '\u030B' # Combining double accute
     capslock+ralt:                      none
+    shift+capslock:                     '\u0306' # Combining breve
 }
 
-# Row 3 — QWERTZ positions, Neo2 upper layers only
-# A S D F G H J K L ; '
+# Define row 3
 
 key CAPS_LOCK { # Mod3
     label:                              none
     base:                               none
 }
 
-key A {
-    capslock:                           '\\'
-    ralt:                               fallback MOVE_HOME
-    shift+capslock:                     none
+key U {
+    label:                              'U'
+    base:                               'u'
+    shift:                              'U'
+    capslock:                           '<'
+    ralt:                               '7'
     capslock+ralt:                      '\u2282' # ⊂
+    shift+capslock:                     '\u03C8' # ψ
 }
 
-key S {
-    capslock:                           '/'
-    ralt:                               fallback DPAD_LEFT
-    shift+capslock:                     '\u03B9' # ι
+key I {
+    label:                              'I'
+    base:                               'i'
+    shift:                              'I'
+    capslock:                           '>'
+    ralt:                               '8'
+    shift+capslock:                     '\u03B9' # ι seems not to work with caps + left shit
     capslock+ralt:                      '\u222B' # ∫
 }
 
-key D {
-    capslock:                           '{'
-    ralt:                               fallback DPAD_DOWN
+key A {
+    label:                              'A'
+    base:                               'a'
+    shift:                              'A'
+    capslock:                           '\\'
+    ralt:                               fallback MOVE_HOME
     shift+capslock:                     '\u03B1' # α
     capslock+ralt:                      '\u2200' # ∀
 }
 
-key F {
-    capslock:                           '}'
-    ralt:                               fallback DPAD_RIGHT
+key E {
+    label:                              'E'
+    base:                               'e'
+    shift:                              'E'
+    capslock:                           '['
+    ralt:                               fallback DPAD_UP
     shift+capslock:                     '\u03B5' # ε
     capslock+ralt:                      '\u2203' # ∃
 }
 
-key G {
-    capslock:                           '*'
-    ralt:                               fallback MOVE_END
+key O {
+    label:                              'O'
+    base:                               'o'
+    shift:                              'O'
+    capslock:                           '='
+    ralt:                               '9'
     shift+capslock:                     '\u03BF' # ο
     capslock+ralt:                      '\u2208' # ∈
 }
 
-key H {
-    capslock:                           '?'
-    ralt:                               '\u00BF' # ¿
+key S {
+    label:                              'S'
+    base:                               's'
+    shift:                              'S'
+    capslock:                           '/'
+    ralt:                               fallback DPAD_LEFT
     shift+capslock:                     '\u03C3' # σ
     capslock+ralt:                      '\u03A3' # Σ
 }
 
-key J {
-    capslock:                           '('
-    ralt:                               '4'
+key N {
+    label:                              'N'
+    base:                               'n'
+    shift:                              'N'
+    capslock:                           '+'
+    ralt:                               ':'
     shift+capslock:                     '\u03BD' # ν
     capslock+ralt:                      '\u2115' # ℕ
 }
 
-key K {
-    capslock:                           ')'
-    ralt:                               '5'
+key R {
+    label:                              'R'
+    base:                               'r'
+    shift:                              'R'
+    capslock:                           ']'
+    ralt:                               fallback FORWARD_DEL
     shift+capslock:                     '\u03C1' # ρ
     capslock+ralt:                      '\u211D' # ℝ
 }
 
-key L {
-    capslock:                           '-'
-    ralt:                               '6'
+key T {
+    label:                              'T'
+    base:                               't'
+    shift:                              'T'
+    capslock:                           '^'
+    ralt:                               fallback PAGE_DOWN
     shift+capslock:                     '\u03C4' # τ
     capslock+ralt:                      '\u2202' # ∂
 }
 
-key SEMICOLON {
-    capslock:                           ':'
-    ralt:                               ','
+key D {
+    label:                              'D'
+    base:                               'd'
+    shift:                              'D'
+    capslock:                           '{'
+    ralt:                               fallback DPAD_DOWN
     shift+capslock:                     '\u03B4' # δ
     capslock+ralt:                      '\u0394' # Δ
 }
 
-key APOSTROPHE {
-    capslock:                           '@'
-    ralt:                               '.'
-    shift+capslock:                     '\u03C5' # υ
-    capslock+ralt:                      '\u2207' # ∇
+key Y {
+    label:                              'Y'
+    base:                               'y'
+    shift:                              'Y'
+    capslock:                           '#'
+    ralt:                               fallback ESCAPE
+    shift+capslock:                     '\u0394' # υ
+    capslock+ralt:                      '\u03C5' # ∇
 }
 
 key BACKSLASH { # Mod3
@@ -276,59 +454,67 @@ key BACKSLASH { # Mod3
     base:                               none
 }
 
-# Row 4 — QWERTZ positions, Neo2 upper layers only
-# Y X C V B N M , . /
-
-map key 86 SLASH # MOD4
+# Define row 4
 
 key SLASH { # Mod4
     label:                              none
     base:                               none
 }
 
-key Y {
-    capslock:                           '#'
-    ralt:                               fallback ESCAPE
-    shift+capslock:                     none
-    capslock+ralt:                      '\u222A' # ∪
-}
-
-key X {
+key SEMICOLON {
+    label:                              '\u00D6' # Ö
+    base:                               '\u00F6' # ü
+    shift:                              '\u00D6' # Ö
     capslock:                           '$'
     ralt:                               fallback TAB
     shift+capslock:                     '\u03F5' # ϵ
     capslock+ralt:                      '\u2229' # ∩
 }
 
-key C {
-    capslock:                           '|'
-    ralt:                               fallback INSERT
+key APOSTROPHE {
+    label:                              '\u00C4' # Ä
+    base:                               '\u00E4' # ä
+    shift:                              '\u00C4' # Ä
+    capslock:                           '@'
+    ralt:                               '.'
     shift+capslock:                     '\u03B7' # η
     capslock+ralt:                      '\u2135' # ℵ
 }
 
-key V {
-    capslock:                           '~'
-    ralt:                               fallback ENTER
+key P {
+    label:                              'P'
+    base:                               'p'
+    shift:                              'P'
+    capslock:                           '&'
+    ralt:                               '+'
     shift+capslock:                     '\u03C0' # π
     capslock+ralt:                      '\u03A0' # Π
 }
 
-key B {
-    capslock:                           '`'
-    ralt:                               none
+key Z {
+    label:                              'Z'
+    base:                               'z'
+    shift:                              'Z'
+    capslock:                           '!'
+    ralt:                               '¡'
     shift+capslock:                     '\u03B6' # ζ
     capslock+ralt:                      '\u2124' # ℤ
 }
 
-key N {
-    capslock:                           '+'
+key B {
+    label:                              'B'
+    base:                               'b'
+    shift:                              'B'
+    capslock:                           '`'
     ralt:                               ':'
     shift+capslock:                     '\u03B2' # β
     capslock+ralt:                      '\u21D0' # ⇐
 }
 
 key M {
+    label:                              'M'
+    base:                               'm'
+    shift:                              'M'
     capslock:                           '%'
     ralt:                               '1'
     shift+capslock:                     '\u03BC' # μ
@@ -336,6 +522,9 @@ key M {
 }
 
 key COMMA {
+    label:                              ','
+    base:                               ','
+    shift:                              '\u2013' # –
     capslock:                           '"'
     ralt:                               '2'
     shift+capslock:                     '\u03F1' # ϱ
@@ -343,24 +532,41 @@ key COMMA {
 }
 
 key PERIOD {
+    label:                              '.'
+    base:                               '.'
+    shift:                              '\u2022' # •
     capslock:                           '\''
     ralt:                               '3'
     shift+capslock:                     '\u03D1' # ϑ
     capslock+ralt:                      '\u21A6' # ↦
 }
 
-key EQUALS {
-    capslock:                           ';'
-    ralt:                               ';'
+key J {
+    label:                              'J'
+    base:                               'j'
+    shift:                              'J'
+    capslock:                           '('
+    ralt:                               '4'
     shift+capslock:                     '\u03B8' # θ
     capslock+ralt:                      '\u0398' # Θ
 }
 
-# Row 5
-
 key SPACE {
+    label:                              ' '
+    base:                               ' '
+    shift:                              ' '
     capslock:                           ' '
     ralt:                               '0'
     shift+capslock:                     '\u00A0' # no-break space
-    capslock+ralt:                      '\u202F' # narrow no-break space
+    capslock+ralt:                      '\u202F' # Narrow no-break space
+}
+
+key MINUS {
+    label:                              '-'
+    base:                               '-'
+    shift:                              '\u2014' # em dash
+    capslock:                           '-'
+    ralt:                               '-'
+    shift+capslock:                     '\u2011' # ‑
+    capslock+ralt:                      '\u254C' # ╌
 }
