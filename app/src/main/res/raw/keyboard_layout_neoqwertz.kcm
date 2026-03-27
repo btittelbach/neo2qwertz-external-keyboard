@@ -8,7 +8,7 @@ type OVERLAY
 
 # Remap row 1
 
-map key 41  PLUS # circumflex
+map key 41  GRAVE # circumflex
 map key 2   1
 map key 3   2
 map key 4   3
@@ -19,8 +19,8 @@ map key 8   7
 map key 9   8
 map key 10  9
 map key 11  0
-map key 12  SHARPS
-map key 13  GRAVE
+map key 12  MINUS
+map key 13  EQUALS
 
 
 # Remap row 2
@@ -40,6 +40,7 @@ map key 27 RIGHT_BRACKET # acute
 
 # Remap row 3
 
+map key 58 CAPS_LOCK # MOD3
 map key 30 A
 map key 31 S
 map key 32 D
@@ -52,10 +53,10 @@ map key 38 L
 map key 39 SEMICOLON # Ö
 map key 40 APOSTROPHE # Ä
 map key 43 BACKSLASH # MOD3
+map key 86 BACKSLASH # MOD3
 
 # Remap row 4
 
-map key 86 SLASH # MOD4
 map key 44 Y
 map key 45 X
 map key 46 C
@@ -65,13 +66,8 @@ map key 49 N
 map key 50 M
 map key 51 COMMA
 map key 52 PERIOD
-map key 53 MINUS
-
-
-
-# Remap row 4
-
-map key 86 SLASH # MOD4
+map key 53 SLASH
+map key 100 ALT_RIGHT #MOD4
 
 # Remap row 5
 
@@ -81,7 +77,7 @@ map key 86 SLASH # MOD4
 
 # Define row 1
 
-key PLUS {
+key GRAVE {
     label:                              '^'
     base:                               '\u0302' # Combining circumflex
     shift:                              '\u030C' # Combining caron
@@ -191,7 +187,7 @@ key 0 {
     capslock+ralt:                      '\u2205' # ∅
 }
 
-key SHARPS {
+key MINUS {
     label:                              '\u1E9E' # ẞ
     base:                               '\u00DF' # ß
     shift:                              '\u1E9E' # ẞ
@@ -201,7 +197,7 @@ key SHARPS {
     shift+capslock:                     '\u2218' # ∘
 }
 
-key GRAVE {
+key EQUALS {
     label:                              '`'
     base:                               '\u0300' # Combining grave
     shift:                              '\u0327' # Combining cedilla
@@ -456,7 +452,7 @@ key BACKSLASH { # Mod3
 
 # Define row 4
 
-key SLASH { # Mod4
+key ALT_RIGHT { # Mod4
     label:                              none
     base:                               none
 }
@@ -561,7 +557,7 @@ key SPACE {
     capslock+ralt:                      '\u202F' # Narrow no-break space
 }
 
-key MINUS {
+key SLASH {
     label:                              '-'
     base:                               '-'
     shift:                              '\u2014' # em dash
