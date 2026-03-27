@@ -25,23 +25,23 @@ public class Neo2InputMethodService extends InputMethodService {
         // Row 1
         put(KeyEvent.KEYCODE_8, KeyEvent.KEYCODE_TAB);
         // Row 2
-        put(KeyEvent.KEYCODE_X, KeyEvent.KEYCODE_PAGE_UP);
-        put(KeyEvent.KEYCODE_V, KeyEvent.KEYCODE_DEL);
-        put(KeyEvent.KEYCODE_L, KeyEvent.KEYCODE_DPAD_UP);
-        put(KeyEvent.KEYCODE_C, KeyEvent.KEYCODE_FORWARD_DEL);
-        put(KeyEvent.KEYCODE_W, KeyEvent.KEYCODE_PAGE_DOWN);
+        put(KeyEvent.KEYCODE_Q, KeyEvent.KEYCODE_PAGE_UP);
+        put(KeyEvent.KEYCODE_W, KeyEvent.KEYCODE_DEL);
+        put(KeyEvent.KEYCODE_E, KeyEvent.KEYCODE_DPAD_UP);
+        put(KeyEvent.KEYCODE_R, KeyEvent.KEYCODE_FORWARD_DEL);
+        put(KeyEvent.KEYCODE_T, KeyEvent.KEYCODE_PAGE_DOWN);
         // Row 3
-        put(KeyEvent.KEYCODE_U, KeyEvent.KEYCODE_MOVE_HOME);
-        put(KeyEvent.KEYCODE_I, KeyEvent.KEYCODE_DPAD_LEFT);
-        put(KeyEvent.KEYCODE_A, KeyEvent.KEYCODE_DPAD_DOWN);
-        put(KeyEvent.KEYCODE_E, KeyEvent.KEYCODE_DPAD_RIGHT);
-        put(KeyEvent.KEYCODE_O, KeyEvent.KEYCODE_MOVE_END);
+        put(KeyEvent.KEYCODE_A, KeyEvent.KEYCODE_MOVE_HOME);
+        put(KeyEvent.KEYCODE_S, KeyEvent.KEYCODE_DPAD_LEFT);
+        put(KeyEvent.KEYCODE_D, KeyEvent.KEYCODE_DPAD_DOWN);
+        put(KeyEvent.KEYCODE_F, KeyEvent.KEYCODE_DPAD_RIGHT);
+        put(KeyEvent.KEYCODE_G, KeyEvent.KEYCODE_MOVE_END);
         // Row 4
-        put(KeyEvent.KEYCODE_EQUALS, KeyEvent.KEYCODE_ESCAPE);
-        put(KeyEvent.KEYCODE_SEMICOLON, KeyEvent.KEYCODE_TAB);
-        put(KeyEvent.KEYCODE_APOSTROPHE, KeyEvent.KEYCODE_INSERT);
-        put(KeyEvent.KEYCODE_P, KeyEvent.KEYCODE_ENTER);
-        put(KeyEvent.KEYCODE_Z, KeyEvent.KEYCODE_BACK);
+        put(KeyEvent.KEYCODE_Y, KeyEvent.KEYCODE_ESCAPE);
+        put(KeyEvent.KEYCODE_X, KeyEvent.KEYCODE_TAB);
+        put(KeyEvent.KEYCODE_C, KeyEvent.KEYCODE_INSERT);
+        put(KeyEvent.KEYCODE_V, KeyEvent.KEYCODE_ENTER);
+        put(KeyEvent.KEYCODE_B, KeyEvent.KEYCODE_BACK);
     }};
 
     private int mod2_only = 0;
