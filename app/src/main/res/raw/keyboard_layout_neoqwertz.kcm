@@ -40,7 +40,7 @@ map key 27 RIGHT_BRACKET # acute
 
 # Remap row 3
 
-map key 58 CAPS_LOCK # MOD3
+# map key 58 CAPS_LOCK # MOD3
 map key 30 A
 map key 31 S
 map key 32 D
@@ -53,10 +53,10 @@ map key 38 L
 map key 39 SEMICOLON # Ö
 map key 40 APOSTROPHE # Ä
 map key 43 BACKSLASH # MOD3
-map key 86 BACKSLASH # MOD3
 
 # Remap row 4
 
+map key 86 PLUS # MOD4
 map key 44 Y
 map key 45 X
 map key 46 C
@@ -67,9 +67,10 @@ map key 50 M
 map key 51 COMMA
 map key 52 PERIOD
 map key 53 SLASH
-map key 100 ALT_RIGHT #MOD4
 
 # Remap row 5
+
+# map key 100 ALT_RIGHT #MOD4
 
 ###
 # Define base and shift for each key. All other modifiers are handled by Neo2InputMethodService.
@@ -309,9 +310,9 @@ key Q {
 }
 
 key LEFT_BRACKET {
-    label:                              'Ü' #
-    base:                               'ü' #
-    shift:                              'Ü' #
+    label:                              '\u00DC' # Ü
+    base:                               '\u00FC' # ü
+    shift:                              '\u00DC' # Ü
     capslock:                           '\u017F' # ſ
     ralt:                               '\u2212' # −
     capslock+ralt:                      '\u03C2' # ς
@@ -452,10 +453,16 @@ key BACKSLASH { # Mod3
 
 # Define row 4
 
+key PLUS { # Mod4
+    label:                              none
+    base:                               none
+}
+
 key ALT_RIGHT { # Mod4
     label:                              none
     base:                               none
 }
+
 
 key SEMICOLON {
     label:                              '\u00D6' # Ö
@@ -492,7 +499,7 @@ key Z {
     base:                               'z'
     shift:                              'Z'
     capslock:                           '!'
-    ralt:                               '¡'
+    ralt:                               '\u00A1' # ¡
     shift+capslock:                     '\u03B6' # ζ
     capslock+ralt:                      '\u2124' # ℤ
 }

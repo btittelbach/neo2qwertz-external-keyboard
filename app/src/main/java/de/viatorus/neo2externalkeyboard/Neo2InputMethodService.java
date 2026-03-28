@@ -18,7 +18,7 @@ public class Neo2InputMethodService extends InputMethodService {
     private static final int Mod2_2 = KeyEvent.KEYCODE_SHIFT_RIGHT;
     private static final int Mod3_1 = KeyEvent.KEYCODE_CAPS_LOCK;
     private static final int Mod3_2 = KeyEvent.KEYCODE_BACKSLASH;
-    private static final int Mod4_1 = KeyEvent.KEYCODE_SLASH;
+    private static final int Mod4_1 = KeyEvent.KEYCODE_PLUS;
     private static final int Mod4_2 = KeyEvent.KEYCODE_ALT_RIGHT;
 
     private static final Map<Integer, Integer> textActions = new HashMap<Integer, Integer>() {{
