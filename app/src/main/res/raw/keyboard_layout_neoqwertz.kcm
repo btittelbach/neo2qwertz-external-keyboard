@@ -194,8 +194,8 @@ key MINUS {
     shift:                              '\u1E9E' # ẞ
     capslock:                           none
     ralt:                               '-'
-    capslock+ralt:                      '\u03C2' # ς
     shift+capslock:                     '\u2218' # ∘
+    capslock+ralt:                      '\u03C2' # ς
 }
 
 key EQUALS {
@@ -275,8 +275,9 @@ key H {
     base:                               'h'
     shift:                              'H'
     capslock:                           '?'
-    ralt:                               '\u00BF' # ¿    capslock+ralt:                      '\u03C8' # ψ
-    shift+capslock:                     '\u03A8' # Ψ
+    ralt:                               '\u00BF' # ¿
+    shift+capslock:                     '\u03C8' # ψ
+    capslock+ralt:                      '\u03A8' # Ψ
 }
 
 key G {
@@ -285,8 +286,8 @@ key G {
     shift:                              'G'
     capslock:                           '*'
     ralt:                               fallback MOVE_END
-    capslock+ralt:                      '\u03B3' # γ
-    shift+capslock:                     '\u0393' # Γ
+    shift+capslock:                     '\u03B3' # γ
+    capslock+ralt:                      '\u0393' # Γ
 }
 
 key F {
@@ -295,8 +296,8 @@ key F {
     shift:                              'F'
     capslock:                           '}'
     ralt:                               fallback DPAD_RIGHT
-    capslock+ralt:                      '\u03C6' # φ
-    shift+capslock:                     '\u03A6' # Φ
+    shift+capslock:                     '\u03C6' # φ
+    capslock+ralt:                      '\u03A6' # Φ
 }
 
 key Q {
@@ -305,8 +306,8 @@ key Q {
     shift:                              'Q'
     capslock:                           '\u2026' # …
     ralt:                               fallback PAGE_UP
-    capslock+ralt:                      '\u03D5' # ϕ
-    shift+capslock:                     '\u211A' # ℚ
+    shift+capslock:                     '\u03D5' # ϕ
+    capslock+ralt:                      '\u211A' # ℚ
 }
 
 key LEFT_BRACKET {
@@ -325,8 +326,8 @@ key RIGHT_BRACKET {
     shift:                              '\u0303' # Combining tilde
     capslock:                           '\u0337' # Combining solidus
     ralt:                               '\u030B' # Combining double accute
-    capslock+ralt:                      none
-    shift+capslock:                     '\u0306' # Combining breve
+    shift+capslock:                     none
+    capslock+ralt:                      '\u0306' # Combining breve
 }
 
 # Define row 3
@@ -342,8 +343,8 @@ key U {
     shift:                              'U'
     capslock:                           '<'
     ralt:                               '7'
-    capslock+ralt:                      '\u2282' # ⊂
     shift+capslock:                     '\u03C8' # ψ
+    capslock+ralt:                      '\u2282' # ⊂
 }
 
 key I {
