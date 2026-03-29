@@ -315,8 +315,8 @@ key LEFT_BRACKET {
     shift:                              '\u00DC' # Ü
     capslock:                           '\u017F' # ſ
     ralt:                               '\u2212' # −
-    capslock+ralt:                      '\u03C2' # ς
-    shift+capslock:                     '\u222A' # Y
+    shift+capslock:                     '\u03C2' # ς
+    capslock+ralt:                      '\u222A' # ∪
 }
 
 key RIGHT_BRACKET {
