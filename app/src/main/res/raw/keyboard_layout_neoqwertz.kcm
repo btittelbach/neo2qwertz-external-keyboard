@@ -216,8 +216,8 @@ key X {
     shift:                              'X'
     capslock:                           '$'
     ralt:                               fallback TAB
-    capslock+ralt:                      '\u03BE' # ξ
-    shift+capslock:                     '\u039E' # Ξ
+    shift+capslock:                     '\u03BE' # ξ
+    capslock+ralt:                      '\u039E' # Ξ
 }
 
 key V {
@@ -227,7 +227,7 @@ key V {
     capslock:                           '~'
     ralt:                               fallback ENTER
     shift+capslock:                     '\u03C0' # π
-    capslock+ralt:                      '\u03A0' # Π
+    capslock+ralt:                      '\u221A' # √
 }
 
 key L {
@@ -316,7 +316,7 @@ key LEFT_BRACKET {
     capslock:                           '\u017F' # ſ
     ralt:                               '\u2212' # −
     capslock+ralt:                      '\u03C2' # ς
-    shift+capslock:                     '\u222A' # ∪
+    shift+capslock:                     '\u222A' # Y
 }
 
 key RIGHT_BRACKET {
@@ -442,8 +442,8 @@ key Y {
     shift:                              'Y'
     capslock:                           '#'
     ralt:                               fallback ESCAPE
-    shift+capslock:                     '\u0394' # υ
-    capslock+ralt:                      '\u03C5' # ∇
+    shift+capslock:                     '\u03C5' # υ
+    capslock+ralt:                      '\u2207' # ∇
 }
 
 key BACKSLASH { # Mod3
@@ -466,10 +466,10 @@ key ALT_RIGHT { # Mod4
 
 key SEMICOLON {
     label:                              '\u00D6' # Ö
-    base:                               '\u00F6' # ü
+    base:                               '\u00F6' # ö
     shift:                              '\u00D6' # Ö
-    capslock:                           '$'
-    ralt:                               fallback TAB
+    capslock:                           ':'
+    ralt:                               ','
     shift+capslock:                     '\u03F5' # ϵ
     capslock+ralt:                      '\u2229' # ∩
 }
@@ -568,8 +568,8 @@ key SLASH {
     label:                              '-'
     base:                               '-'
     shift:                              '\u2014' # em dash
-    capslock:                           '-'
-    ralt:                               '-'
+    capslock:                           ';'
+    ralt:                               ';'
     shift+capslock:                     '\u2011' # ‑
     capslock+ralt:                      '\u254C' # ╌
 }
