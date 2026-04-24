@@ -1,9 +1,17 @@
 package de.viatorus.neo2externalkeyboard;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.inputmethodservice.InputMethodService;
+import android.os.Build;
 import android.util.Log;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import java.text.MessageFormat;
@@ -13,6 +21,11 @@ import java.util.Map;
 
 public class Neo2InputMethodService extends InputMethodService {
     private static final String TAG = "Neo2InputMethodService";
+
+    private static final String NOTIFICATION_CHANNEL_ID = "neo2_ime_switcher";
+    private static final int NOTIFICATION_ID = 1;
+    public static final String ACTION_SHOW_IME_PICKER =
+            "de.viatorus.neo2externalkeyboard.ACTION_SHOW_IME_PICKER";
 
     private static final int Mod2_1 = KeyEvent.KEYCODE_SHIFT_LEFT;
     private static final int Mod2_2 = KeyEvent.KEYCODE_SHIFT_RIGHT;
@@ -237,6 +250,73 @@ public class Neo2InputMethodService extends InputMethodService {
         // Handle all other keys to work with the key character map.
         getCurrentInputConnection().sendKeyEvent(event);
         return true;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        showImeSwitcherNotification();
+    }
+
+    @Override
+    public void onDestroy() {
+        hideImeSwitcherNotification();
+        super.onDestroy();
+    }
+
+    /**
+     * Creates a persistent notification that opens the system input method picker when tapped.
+     */
+    private void showImeSwitcherNotification() {
+        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        if (nm == null) {
+            return;
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    NOTIFICATION_CHANNEL_ID,
+                    getString(R.string.notification_channel_name),
+                    NotificationManager.IMPORTANCE_LOW);
+            channel.setDescription(getString(R.string.notification_channel_description));
+            channel.setShowBadge(false);
+            nm.createNotificationChannel(channel);
+        }
+
+        Intent intent = new Intent(this, ImePickerReceiver.class);
+        intent.setAction(ACTION_SHOW_IME_PICKER);
+
+        int flags = PendingIntent.FLAG_UPDATE_CURRENT;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            flags |= PendingIntent.FLAG_IMMUTABLE;
+        }
+        PendingIntent pi = PendingIntent.getBroadcast(this, 0, intent, flags);
+
+        Notification.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            builder = new Notification.Builder(this, NOTIFICATION_CHANNEL_ID);
+        } else {
+            builder = new Notification.Builder(this)
+                    .setPriority(Notification.PRIORITY_LOW);
+        }
+
+        Notification notification = builder
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentTitle(getString(R.string.notification_title))
+                .setContentText(getString(R.string.notification_text))
+                .setOngoing(true)
+                .setContentIntent(pi)
+                .setShowWhen(false)
+                .build();
+
+        nm.notify(NOTIFICATION_ID, notification);
+    }
+
+    private void hideImeSwitcherNotification() {
+        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        if (nm != null) {
+            nm.cancel(NOTIFICATION_ID);
+        }
     }
 
     @Override

@@ -2,4 +2,14 @@
 <resources>
     <string name="app_name">Neo2 External Keyboard</string>
     <string name="keyboard_layout_neoqwertz_label">NeoQWERTZ</string>
+    <string name="notification_title">Neo2 External Keyboard</string>
+    <string name="notification_text">Tap to switch input method</string>
+    <string name="notification_channel_name">Input method switcher</string>
+    <string name="notification_channel_description">Persistent notification to quickly switch the active input method.</string>
+
+    <string name="bt_notification_title">Bluetooth keyboard connected</string>
+    <string name="bt_notification_text">%1$s connected. Tap to switch input method.</string>
+    <string name="bt_notification_channel_name">Bluetooth keyboard connected</string>
+    <string name="bt_notification_channel_description">Shown when a Bluetooth keyboard connects, so you can switch to the Neo2 input method.</string>
+    <string name="bt_keyboard_default_name">Bluetooth keyboard</string>
 </resources>

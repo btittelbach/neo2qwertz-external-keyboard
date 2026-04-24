@@ -3,10 +3,40 @@
     android:versionCode="1"
     android:versionName="1.1.0">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Needed to receive ACL_CONNECTED on API < 31 and to inspect the connected device. -->
+    <uses-permission android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <!-- Required on API 31+ to inspect the BluetoothDevice carried by ACL_CONNECTED. -->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name">
+
+        <receiver
+            android:name=".ImePickerReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="de.viatorus.neo2externalkeyboard.ACTION_SHOW_IME_PICKER" />
+            </intent-filter>
+        </receiver>
+
+        <!--
+          Detects when a Bluetooth keyboard connects and posts a notification that opens the
+          system input method picker when tapped. ACL_CONNECTED is a protected system broadcast
+          that is exempt from the implicit-broadcast restrictions, so a manifest-declared
+          receiver can still be woken up for it.
+        -->
+        <receiver
+            android:name=".BluetoothKeyboardReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.bluetooth.device.action.ACL_CONNECTED" />
+            </intent-filter>
+        </receiver>
 
         <receiver
             android:name=".InputDeviceReceiver"
