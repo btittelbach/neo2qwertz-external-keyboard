@@ -27,6 +27,7 @@ public class BluetoothKeyboardReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        Log.d(TAG, "onReceive action=" + (intent == null ? "null" : intent.getAction()));
         if (intent == null || !BluetoothDevice.ACTION_ACL_CONNECTED.equals(intent.getAction())) {
             return;
         }
@@ -78,6 +79,13 @@ public class BluetoothKeyboardReceiver extends BroadcastReceiver {
     }
 
     private void showNotification(Context context, String deviceName) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+                && context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "POST_NOTIFICATIONS not granted, cannot show BT notification");
+            return;
+        }
+
         NotificationManager nm =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (nm == null) {

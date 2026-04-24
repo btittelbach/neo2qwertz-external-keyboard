@@ -255,6 +255,14 @@ public class Neo2InputMethodService extends InputMethodService {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.d(TAG, "IME onCreate, posting switcher notification");
+        showImeSwitcherNotification();
+    }
+
+    @Override
+    public void onBindInput() {
+        super.onBindInput();
+        // Re-post: the user may have granted POST_NOTIFICATIONS only after onCreate ran.
         showImeSwitcherNotification();
     }
 
@@ -266,8 +274,16 @@ public class Neo2InputMethodService extends InputMethodService {
 
     /**
      * Creates a persistent notification that opens the system input method picker when tapped.
+     * On API 33+ this silently does nothing if POST_NOTIFICATIONS has not been granted.
      */
     private void showImeSwitcherNotification() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+                && checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+                != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "POST_NOTIFICATIONS not granted, skipping IME notification");
+            return;
+        }
+
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         if (nm == null) {
             return;
