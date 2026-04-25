@@ -7,18 +7,12 @@
     <string name="notification_channel_name">Input method switcher</string>
     <string name="notification_channel_description">Persistent notification to quickly switch the active input method.</string>
 
-    <string name="bt_notification_title">Bluetooth keyboard connected</string>
-    <string name="bt_notification_text">%1$s connected. Tap to switch input method.</string>
-    <string name="bt_notification_channel_name">Bluetooth keyboard connected</string>
-    <string name="bt_notification_channel_description">Shown when a Bluetooth keyboard connects, so you can switch to the Neo2 input method.</string>
-    <string name="bt_keyboard_default_name">Bluetooth keyboard</string>
-
-    <string name="main_info">Neo2 external keyboard layout for physical keyboards.\n\nTo use it: enable the input method and select it as the current keyboard. Notifications help you switch quickly when a Bluetooth keyboard connects.</string>
+    <string name="main_info">Neo2 external keyboard layout for physical keyboards.\n\nTo use it: enable the input method and select it as the current keyboard. A notification helps you switch quickly between input methods e.g. when a Bluetooth Keyboard connects but the Neo2 IME is not yet selected.</string>
     <string name="main_open_ime_settings">Open input method settings</string>
     <string name="main_show_ime_picker">Show input method picker</string>
     <string name="main_open_notification_settings">Open notification settings</string>
     <string name="status_notifications_granted">✓ Notification permission granted</string>
-    <string name="status_notifications_missing">✗ Notification permission missing (required for the IME and Bluetooth notifications)</string>
     <string name="status_bluetooth_granted">✓ Bluetooth permission granted</string>
     <string name="status_bluetooth_missing">✗ Bluetooth permission missing (required to detect connecting keyboards)</string>
+    <string name="status_notifications_missing">✗ Notification permission missing (required for the IME switcher notification)</string>
 </resources>

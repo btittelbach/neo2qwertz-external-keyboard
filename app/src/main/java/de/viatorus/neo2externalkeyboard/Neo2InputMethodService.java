@@ -22,8 +22,8 @@ import java.util.Map;
 public class Neo2InputMethodService extends InputMethodService {
     private static final String TAG = "Neo2InputMethodService";
 
-    private static final String NOTIFICATION_CHANNEL_ID = "neo2_ime_switcher";
-    private static final int NOTIFICATION_ID = 1;
+    static final String NOTIFICATION_CHANNEL_ID = "neo2_ime_switcher";
+    static final int NOTIFICATION_ID = 1;
     public static final String ACTION_SHOW_IME_PICKER =
             "de.viatorus.neo2externalkeyboard.ACTION_SHOW_IME_PICKER";
 
@@ -277,14 +277,26 @@ public class Neo2InputMethodService extends InputMethodService {
      * On API 33+ this silently does nothing if POST_NOTIFICATIONS has not been granted.
      */
     private void showImeSwitcherNotification() {
+        postImeSwitcherNotification(this);
+    }
+
+    /**
+     * Posts the IME switcher notification from any {@link Context}. Used both by the IME service
+     * itself (on create/bind) and by {@link BluetoothKeyboardReceiver} when a Bluetooth keyboard
+     * connects, so the user can switch to this IME even before it is active.
+     * <p>
+     * On API 33+ this silently does nothing if POST_NOTIFICATIONS has not been granted.
+     */
+    static void postImeSwitcherNotification(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
-                && checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+                && context.checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
                 != android.content.pm.PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, "POST_NOTIFICATIONS not granted, skipping IME notification");
             return;
         }
 
-        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        NotificationManager nm =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (nm == null) {
             return;
         }
@@ -292,34 +304,34 @@ public class Neo2InputMethodService extends InputMethodService {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
                     NOTIFICATION_CHANNEL_ID,
-                    getString(R.string.notification_channel_name),
+                    context.getString(R.string.notification_channel_name),
                     NotificationManager.IMPORTANCE_LOW);
-            channel.setDescription(getString(R.string.notification_channel_description));
+            channel.setDescription(context.getString(R.string.notification_channel_description));
             channel.setShowBadge(false);
             nm.createNotificationChannel(channel);
         }
 
-        Intent intent = new Intent(this, ImePickerReceiver.class);
+        Intent intent = new Intent(context, ImePickerReceiver.class);
         intent.setAction(ACTION_SHOW_IME_PICKER);
 
         int flags = PendingIntent.FLAG_UPDATE_CURRENT;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             flags |= PendingIntent.FLAG_IMMUTABLE;
         }
-        PendingIntent pi = PendingIntent.getBroadcast(this, 0, intent, flags);
+        PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, flags);
 
         Notification.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            builder = new Notification.Builder(this, NOTIFICATION_CHANNEL_ID);
+            builder = new Notification.Builder(context, NOTIFICATION_CHANNEL_ID);
         } else {
-            builder = new Notification.Builder(this)
+            builder = new Notification.Builder(context)
                     .setPriority(Notification.PRIORITY_LOW);
         }
 
         Notification notification = builder
                 .setSmallIcon(R.drawable.ic_launcher)
-                .setContentTitle(getString(R.string.notification_title))
-                .setContentText(getString(R.string.notification_text))
+                .setContentTitle(context.getString(R.string.notification_title))
+                .setContentText(context.getString(R.string.notification_text))
                 .setOngoing(true)
                 .setContentIntent(pi)
                 .setShowWhen(false)
