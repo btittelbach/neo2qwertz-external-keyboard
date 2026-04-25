@@ -7,15 +7,19 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.inputmethodservice.InputMethodService;
+import android.os.IBinder;
 import android.os.Build;
 import android.util.Log;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
+import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.view.inputmethod.InputMethodSubtype;
 import android.widget.Toast;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -226,10 +230,76 @@ public class Neo2InputMethodService extends InputMethodService {
     }
 
     /**
+     * Finds an installed voice input method (an IME exposing a subtype with mode "voice").
+     * Returns the IME id (package/class) or {@code null} if none is available.
+     */
+    private String findVoiceImeId() {
+        InputMethodManager imm =
+                (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm == null) {
+            return null;
+        }
+        List<InputMethodInfo> imis = imm.getEnabledInputMethodList();
+        if (imis == null) {
+            return null;
+        }
+        for (InputMethodInfo imi : imis) {
+            int count = imi.getSubtypeCount();
+            for (int i = 0; i < count; i++) {
+                InputMethodSubtype sub = imi.getSubtypeAt(i);
+                if ("voice".equals(sub.getMode())) {
+                    return imi.getId();
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Switches to the voice IME. Remembers our own id as the one to come back to.
+     * Returns true if the switch was initiated.
+     */
+    private boolean activateVoiceInput() {
+        String voiceId = findVoiceImeId();
+        if (voiceId == null) {
+            Toast.makeText(this, "No voice input method available.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        IBinder token = getWindow() != null ? getWindow().getWindow().getAttributes().token : null;
+        if (token == null) {
+            // Not currently shown; try anyway, switchInputMethod may still work.
+        }
+        try {
+            switchInputMethod(voiceId);
+        } catch (Throwable t) {
+            Log.w(TAG, "switchInputMethod(voice) failed", t);
+            return false;
+        }
+        return true;
+    }
+
+
+    /**
+     * Handles Key for voice input.
+     */
+    private boolean checkForVoiceInput(final int keyCode, final KeyEvent event, final boolean down) {
+        if (keyCode == KeyEvent.KEYCODE_F12 && event.isCtrlPressed()) {
+            // PrintScreen: if pressed, activate voice input.
+                activateVoiceInput();
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Handles all incoming key events.
      */
     private boolean handleKeyEvent(final int keyCode, KeyEvent event, final boolean down) {
         //  Log.d(TAG, MessageFormat.format("Key {0} with meta state {1} {2}.", keyCode, event.getMetaState(), down ? "down" : "up"));
+
+        if (checkForVoiceInput(keyCode, event, down)) {
+            return true;
+        }
 
         if (checkForMod2(keyCode, down)) {
             mod4_only = 0;
