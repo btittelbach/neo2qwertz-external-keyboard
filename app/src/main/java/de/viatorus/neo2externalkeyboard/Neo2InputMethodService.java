@@ -4,6 +4,7 @@ import android.inputmethodservice.InputMethodService;
 import android.util.Log;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
+import android.view.inputmethod.InputConnection;
 import android.widget.Toast;
 
 import java.text.MessageFormat;
@@ -188,6 +189,14 @@ public class Neo2InputMethodService extends InputMethodService {
     private boolean checkForTextActions(final int keyCode, KeyEvent event) {
         // Only for mod 4.
         if (((mod4_1 || mod4_2) ^ mod4_locked) && !(mod3_1 || mod3_2)) {
+            // Handle undo
+            if (keyCode == KeyEvent.KEYCODE_B) {
+                InputConnection inputConnection = getCurrentInputConnection();
+                int shift = event.isShiftPressed() ? KeyEvent.META_SHIFT_ON : 0;
+                int modifiers = shift | KeyEvent.META_CTRL_LEFT_ON;
+                inputConnection.sendKeyEvent(new KeyEvent(0, 0, event.getAction(), KeyEvent.KEYCODE_Z, 0, modifiers, 0, 44, 0));
+                return true;
+            }
             // Try to find a matching text action.
             Integer action = textActions.get(keyCode);
             if (action != null) {

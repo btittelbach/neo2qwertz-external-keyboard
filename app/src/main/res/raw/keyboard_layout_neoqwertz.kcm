@@ -510,7 +510,7 @@ key B {
     base:                               'b'
     shift:                              'B'
     capslock:                           '`'
-    ralt:                               ':'
+    ralt:                               ':' # Overridden in code to perform undo!
     shift+capslock:                     '\u03B2' # β
     capslock+ralt:                      '\u21D0' # ⇐
 }
